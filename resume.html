@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume - Cameron Garcia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #0a2540;
+            background: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 20px 0;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #0a2540;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #425466;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #635bff;
+        }
+
+        .nav-links .nav-cta {
+            background: linear-gradient(135deg, #635bff, #7c3aed);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(99, 91, 255, 0.3);
+        }
+
+        .page-content {
+            padding-top: 120px;
+            padding-bottom: 80px;
+        }
+
+        .resume-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .resume-header h1 {
+            font-size: 3.5rem;
+            color: #0a2540;
+            margin-bottom: 20px;
+            font-weight: 700;
+            letter-spacing: -2px;
+        }
+
+        .resume-subtitle {
+            font-size: 1.3rem;
+            color: #425466;
+            margin-bottom: 30px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #635bff, #7c3aed);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(99, 91, 255, 0.3);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(99, 91, 255, 0.4);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, #635bff, #7c3aed);
+        }
+
+        .timeline-item {
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e3e8ef;
+            position: relative;
+            width: calc(50% - 40px);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: auto;
+        }
+
+        .timeline-content:hover {
+            box-shadow: 0 20px 60px rgba(99, 91, 255, 0.15);
+            transform: scale(1.02);
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: 50%;
+            top: 40px;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: #635bff;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 0 0 4px #635bff;
+            z-index: 10;
+        }
+
+        .company-logo {
+            display: inline-block;
+            background: linear-gradient(135deg, #635bff, #7c3aed);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .timeline-content h3 {
+            font-size: 1.5rem;
+            color: #0a2540;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .timeline-date {
+            color: #635bff;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .achievements {
+            list-style: none;
+        }
+
+        .achievements li {
+            padding-left: 30px;
+            margin-bottom: 12px;
+            position: relative;
+            color: #425466;
+            line-height: 1.7;
+        }
+
+        .achievements li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #635bff;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .education-section {
+            max-width: 900px;
+            margin: 80px auto 0;
+            padding: 40px;
+            background: linear-gradient(135deg, #f6f9fc, #ffffff);
+            border-radius: 16px;
+            border: 1px solid #e3e8ef;
+        }
+
+        .education-section h2 {
+            font-size: 2rem;
+            color: #0a2540;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .education-content {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 20px;
+            align-items: start;
+        }
+
+        .education-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #635bff, #7c3aed);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .education-details h3 {
+            font-size: 1.3rem;
+            color: #0a2540;
+            margin-bottom: 5px;
+        }
+
+        .education-details p {
+            color: #425466;
+        }
+
+        .skills-section {
+            max-width: 900px;
+            margin: 40px auto 0;
+            padding: 40px;
+            background: white;
+            border-radius: 16px;
+            border: 1px solid #e3e8ef;
+        }
+
+        .skills-section h2 {
+            font-size: 2rem;
+            color: #0a2540;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-category h4 {
+            color: #635bff;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .skill-category p {
+            color: #425466;
+            line-height: 1.8;
+        }
+
+        footer {
+            background: #000000;
+            color: white;
+            text-align: center;
+            padding: 60px 0;
+            margin-top: 80px;
+        }
+
+        footer p {
+            opacity: 0.6;
+            margin-bottom: 10px;
+        }
+
+        footer a {
+            color: #635bff;
+            text-decoration: none;
+        }
+
+        @media (max-width: 968px) {
+            .resume-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-content {
+                width: calc(100% - 80px);
+                margin-left: 80px !important;
+            }
+
+            .timeline-marker {
+                left: 30px;
+            }
+
+            .nav-links {
+                gap: 20px;
+            }
+
+            .container {
+                padding: 0 20px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .resume-header h1 {
+                font-size: 2rem;
+            }
+
+            nav .container {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="index.html" class="nav-logo">Cameron Garcia</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#projects">Projects</a>
+                <a href="resume.html">Resume</a>
+                <a href="mailto:cameron.garcia11@gmail.com" class="nav-cta">Get in touch</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-content">
+        <div class="container">
+            <div class="resume-header">
+                <h1>Resume</h1>
+                <p class="resume-subtitle">A track record of shipping products that users love and businesses value</p>
+                <a href="#" class="download-btn">📥 Download PDF</a>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="company-logo">Apple</span>
+                        <h3>Product Manager - Retail Trade In</h3>
+                        <div class="timeline-date">February 2022 — Present • Cupertino, CA</div>
+                        <ul class="achievements">
+                            <li>Defined and secured funding via capital planning process for a multi-year product roadmap, increasing iPhone Trade In value by 5% and customer purchasing power by $8M in 2025</li>
+                            <li>Led cross-functional programs across engineering, design, legal, and operations to deliver a computer vision model that assesses iPhone/iPad's cosmetic condition with 97% accuracy</li>
+                            <li>Pioneered first-of-its-kind machine learning solution that leverages customer/device attributes to intelligently skip device assessment when possible, reducing transaction time by 5+ minutes while maintaining accuracy of results</li>
+                            <li>Defined and launched personalized recommendation frameworks using customer data to guide trade-in and financing offers, used on 70% of store transactions</li>
+                            <li>Built diagnostic workflows for open and closed box iPhone returns, ensuring products were in good condition and free from non-genuine/missing parts</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="company-logo">Clover</span>
+                        <h3>Senior Product Manager - Point of Sale</h3>
+                        <div class="timeline-date">April 2018 — February 2022 • Sunnyvale, CA</div>
+                        <ul class="achievements">
+                            <li>Launched flagship full service restaurant POS software in US and UK - growing merchant base from 0 to 10,000 within 1 year</li>
+                            <li>Led COVID-19 response tiger team to launch an online ordering product for restaurants within 6 weeks that processed over $70 Million within the first 6 months</li>
+                            <li>Product owner of the POS restaurant vertical - efforts supported Clover being recognized as the "2020 Restaurant Smart Terminal Provider of the Year" by The Strawhecker Group and growth of CSAT score by over 25%</li>
+                            <li>Moderated user-research interviews and facilitated a cross-functional design-thinking studio to define a patent-pending, contactless order and pay experience for full service restaurants</li>
+                            <li>Led the integration with strategic food delivery services and e-commerce payment tools to Clover's Online Ordering platform</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="company-logo">Self-Employed</span>
+                        <h3>Digital Marketing / Web Development Consultant</h3>
+                        <div class="timeline-date">June 2015 — March 2018 • San Jose, CA</div>
+                        <ul class="achievements">
+                            <li>Sourced and negotiated contracts for digital marketing/web development projects</li>
+                            <li>Coded custom websites powered by WordPress for numerous small-medium sized local businesses</li>
+                            <li>Worked directly with clients to develop marketing campaigns to build brand awareness and increase sales using email, social media, and landing pages</li>
+                            <li>Instituted agile project management processes for both marketing and development teams</li>
+                            <li>Hired and managed remote freelancers for various roles including development, content writing, and product design</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="company-logo">Proxio Inc.</span>
+                        <h3>Product Manager</h3>
+                        <div class="timeline-date">November 2013 — November 2017 • Santa Clara, CA</div>
+                        <ul class="achievements">
+                            <li>Built a scalable, repeatable design-build process to deliver white-label enterprise applications resulting in $1M+ revenue per year</li>
+                            <li>Managed all enterprise accounts to ensure adoption, customer success, and negotiated additional $100k+ revenue through sales support</li>
+                            <li>Lead the integration with over 15 strategic partners including Multiple Listing Services, Realtor Associations, and Brokerages</li>
+                            <li>Designed and validated usability of desktop & mobile UX experiences for product features and marketing websites</li>
+                            <li>Product owner and scrum master of three remote development teams in Brazil, Colombia, and India</li>
+                            <li>Negotiated partnership with Lionbridge to localize content for 20 locales</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="education-section">
+                <h2>Education</h2>
+                <div class="education-content">
+                    <div class="education-icon">🎓</div>
+                    <div class="education-details">
+                        <h3>Bachelor of Science in Business Administration</h3>
+                        <p><strong>Emphasis in Marketing</strong></p>
+                        <p>San Jose State University • San Jose, CA • Completed December 2011</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skills-section">
+                <h2>Technical Competencies</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h4>Development</h4>
+                        <p>WordPress • HTML • CSS • GitHub • Claude Code • Replit • ChatGPT CLI</p>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Analytics</h4>
+                        <p>SQL • Google Analytics • Mixpanel • Sigma</p>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Design</h4>
+                        <p>Figma • Sketch • InVision</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p style="font-size: 1.1rem; opacity: 1; margin-bottom: 20px;">Let's build something amazing together</p>
+            <p><a href="mailto:cameron.garcia11@gmail.com">cameron.garcia11@gmail.com</a> • San Jose, CA</p>
+            <p style="margin-top: 30px;">&copy; 2025 Cameron Garcia</p>
+        </div>
+    </footer>
+</body>
+</html>
